@@ -7,9 +7,13 @@ From the output blastn file, SCARR tries to identify the best possible combinati
 SCARR produces 5 output files:
 
 'AnalysisSummary.txt' is a tab-separated table that contains the result for each sequence identifier found in the blastn output file, along with the best scores for single-alignment, two-alignment, and three-alignment analyses.
+
 'JunctionStats.txt' is a tab-separated table that indicates how many two-alignment (Single Junctions) and three-alignment (Double Junctions) rearrangements are found. Each number is also broken down as rearrangements that have 5 bases or more of homology at their breakpoint junction (Microhomology) or 4 bases or less (No microhomology). Finally, the number of short-range inversions is specified (U-Turns).
+
 'SingleJunctions.txt' is a tab-separated table that lists each sequence identified as a two-alignment rearrangement over 2 lines. The first line contains the blastn information of the alignment with the smallest position on the original sequence, along with the SCARR score and whether the rearrangement contains a microhomology, no microhomology, or a U-turn. The second line contains the blastn information of the alignment with the highest position on the original sequence.
+
 'DoubleJunctions.txt' is a tab-separated table that lists each sequence identified as a three-alignment rearrangement over 3 lines. The first line contains the blastn information of the alignment with the smallest position on the original sequence, along with the SCARR score and whether the first rearrangement junction contains a microhomology, no microhomology, or a U-turn. The second line contains the blastn information of the alignment with the next lowest position on the original sequence, along with the SCARR score and whether the second rearrangement junction contains a microhomology, no microhomology, or a U-turn. The third line contains the blastn information of the alignment with the highest position on the original sequence.
+
 'UnlabelledReads.txt' is a tab-separated table that contains the identifiers of sequences that were not explained by a single alignment, two-alignment rearrangement or three-alignment rearrangement, along with the best SCARR scores for each possibility.
 
 SCARRClassify (v. 1.0) is a Python 2.7 script that takes as input a SingleJunctions.txt file output from SCARR.
@@ -19,5 +23,7 @@ SCARRClassify looks at each single junction rearrangement and determines whether
 SCARRClassify also produces 7 output files:
 
 'SingleJunctionsDetail.txt' is a tab-separated table in which the additional information described in the previous paragraph is added to 'SingleJunctions.txt' 
+
 'Deletions.txt', 'Duplications.txt' and 'Inversions.txt' are tab-separated files that contain information about the rearrangements identified for each type (chromosome, breakpoint positions, length, homology and inserted bases).
+
 'DeletionsGrouped.txt','DuplicationsGrouped.txt' and 'InversionsGrouped.txt' are tab-separated files that contain the same information as 'Deletions.txt', 'Duplications.txt' and 'Inversions.txt', but in which identical rearrangements are merged. Rearrangements are sorted in order of how many times they were identified.
